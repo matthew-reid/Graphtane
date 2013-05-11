@@ -1,0 +1,110 @@
+// Copyright (c) 2013-2014 Matthew Paul Reid
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+#version 410 core
+
+layout(vertices = 4) out;
+
+in vec3 vsTexCoord[];
+in vec3 vsNormal[];
+
+out	vec3 csTexCoord[];
+out vec3 csNormal[];
+
+uniform mat4 modelViewProj;
+
+float lodFactor = 0.01;
+
+vec4 fromWorldToNdc(vec4 position)
+{
+    vec4 result = modelViewProj * position;
+    result /= result.w;
+    return result;
+}
+
+vec2 fromNdcToScreenSpace(vec4 position)
+{
+    return (clamp(position.xy, -1.3, 1.3) + 1) * 0.5;
+}
+
+bool offscreen(vec4 ndcPosition)
+{
+    if(ndcPosition.z < -0.5)
+	{
+        return true;
+    }   
+    return any(lessThan(ndcPosition.xy, vec2(-1.7))) ||
+		   any(greaterThan(ndcPosition.xy, vec2(1.7)));
+}
+
+float level(vec2 v0, vec2 v1)
+{
+	return clamp(distance(v0, v1) / lodFactor, 1, 64);
+}
+
+void main()
+{
+	#define id gl_InvocationID
+	gl_out[id].gl_Position = gl_in[id].gl_Position;
+	csTexCoord[id] = vsTexCoord[id];
+	csNormal[id] = vsNormal[id];
+	
+	if(id == 0)
+	{
+		vec4 v0 = fromWorldToNdc(gl_in[0].gl_Position);
+		vec4 v1 = fromWorldToNdc(gl_in[1].gl_Position);
+		vec4 v2 = fromWorldToNdc(gl_in[2].gl_Position);
+		vec4 v3 = fromWorldToNdc(gl_in[3].gl_Position);
+
+		if(all(bvec4(
+			offscreen(v0),
+			offscreen(v1),
+			offscreen(v2),
+			offscreen(v3)
+		)))
+		{
+			gl_TessLevelInner[0] = 0;
+			gl_TessLevelInner[1] = 0;
+			gl_TessLevelOuter[0] = 0;
+			gl_TessLevelOuter[1] = 0;
+			gl_TessLevelOuter[2] = 0;
+			gl_TessLevelOuter[3] = 0;
+		}
+		else
+		{
+			vec2 ss0 = fromNdcToScreenSpace(v0);
+			vec2 ss1 = fromNdcToScreenSpace(v1);
+			vec2 ss2 = fromNdcToScreenSpace(v2);
+			vec2 ss3 = fromNdcToScreenSpace(v3);
+
+			float e0 = level(ss3, ss0);	
+			float e1 = level(ss0, ss1);
+			float e2 = level(ss1, ss2);
+			float e3 = level(ss2, ss3);
+
+			gl_TessLevelInner[0] = mix(e1, e2, 0.5);
+			gl_TessLevelInner[1] = mix(e0, e3, 0.5);		
+			gl_TessLevelOuter[0] = e0;
+			gl_TessLevelOuter[1] = e1;
+			gl_TessLevelOuter[2] = e2;
+			gl_TessLevelOuter[3] = e3;
+		}
+	}
+}

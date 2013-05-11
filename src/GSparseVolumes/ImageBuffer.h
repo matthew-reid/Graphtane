@@ -1,0 +1,63 @@
+// Copyright (c) 2013-2014 Matthew Paul Reid
+
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+#pragma once
+
+namespace GSparseVolumes {
+
+template <typename T>
+struct ImageBuffer
+{
+	ImageBuffer(int width, int height, int depth, int channelCount) :
+		width(width),
+		height(height),
+		depth(depth),
+		channelCount(channelCount)
+	{
+		size_t elementCount = (size_t)width * (size_t)height * (size_t)depth * (size_t)channelCount;
+		data = new T[elementCount];
+		m_sizeBytes = elementCount * sizeof(T);
+	}
+
+	~ImageBuffer()
+	{
+		delete [] data;
+	}
+
+	T* getElement(int x, int y, int z)
+	{
+		return &data[channelCount * size_t(x + size_t(width * y) + size_t(width * height * z))];
+	}
+
+	int getSizeInBytes() const {return m_sizeBytes;}
+
+	T* data;
+	int width;
+	int height;
+	int depth;
+	int channelCount;
+
+private:
+	size_t m_sizeBytes;
+};
+
+typedef ImageBuffer<unsigned char> ImageBufferUChar;
+
+} // namespace GSparseVolumes

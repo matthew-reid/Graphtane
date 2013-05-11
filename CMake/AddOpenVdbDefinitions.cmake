@@ -1,0 +1,6 @@
+macro(AddOpenVdbDefinitions)
+	option(BUILD_WITH_OPENVDB_STATIC "Statically link to OpenVdb")
+	if(BUILD_WITH_OPENVDB_STATIC)
+		add_definitions(-DOPENVDB_STATICLIB) 
+	endif()
+endmacro()
