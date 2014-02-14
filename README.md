@@ -10,10 +10,21 @@ Key libraries:
 * **GVis** - thin OpenGL wrapper
 
 ## Building
-Build solution using CMake.
+The solution can be build with CMake. The build can be configured through CMake using build option variables (BUILD_*).
+
+Required dependencies:
+* Boost
+* GLEW
+* GLFW
+* GLM
+
+Optional dependencies:
+* OpenCL C++ libraries (required by OpenCL projects)
+* OpenVDB (required by OpenVDB projects)
+
 
 ## Examples
-* Executables must be run with working directory set to the root checkout directory.
+* Executables must be run with working directory set to the root repository directory.
 * Camera can be moved with WASD keys and mouse when in free camera mode.
 * Use `VdbViewerApp -h` to see command line options for viewing VDB files.
 
