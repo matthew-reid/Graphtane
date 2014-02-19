@@ -13,17 +13,19 @@ FIND_PATH(OpenVdb_INCLUDE_DIRS openvdb/openvdb.h
 )
 
 find_library(OpenVdb_LIBRARY_RELEASE
-  NAMES libopenvdb.lib
+  NAMES openvdb libopenvdb
   PATHS
   ${OpenVdb_DIR}/lib/Release
   ${OpenVdb_DIR}/lib
+  /opt/local/
 )
 
 find_library(OpenVdb_LIBRARY_DEBUG
-  NAMES libopenvdbd.lib
+  NAMES openvdbd libopenvdbd
   PATHS
   ${OpenVdb_DIR}/lib/Debug
   ${OpenVdb_DIR}/lib
+  /opt/local/
 )
 
 set(OpenVdb_LIBRARIES optimized ${OpenVdb_LIBRARY_RELEASE} debug ${OpenVdb_LIBRARY_DEBUG})

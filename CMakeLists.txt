@@ -16,10 +16,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_DEBUG_POSTFIX d)
 link_directories(${CMAKE_BINARY_DIR}/lib)
 
-find_package(Boost COMPONENTS thread REQUIRED)
+find_package(Boost REQUIRED)
 include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
-
 
 add_subdirectory(src/GAppFramework)
 add_subdirectory(src/GCommon)

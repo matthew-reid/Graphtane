@@ -13,15 +13,16 @@ FIND_PATH(GLEW_INCLUDE_DIR GL/glew.h
 )
 
 find_library(GLEW_LIBRARY
-  NAMES glew32s
+  NAMES GLEW glew32s
   PATHS
   ${GLEW_DIR}/lib
 )
 
 find_library(GLEW_MX_LIBRARY
-  NAMES glew32mxs.lib
+  NAMES GLEWmx glew32mxs
   PATHS
   ${GLEW_DIR}/lib
+  /opt/local/
 )
 
 set(GLEW_LIBRARIES ${GLEW_LIBRARY} ${GLEW_MX_LIBRARY})
