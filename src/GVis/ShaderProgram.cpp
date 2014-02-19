@@ -23,7 +23,6 @@
 #include "Texture.h"
 #include "Convert.h"
 
-#include <GCommon/FileFinder.h>
 #include <GCommon/Logger.h>
 
 #include <boost/foreach.hpp>
