@@ -157,11 +157,11 @@ void Window::setMouseVisible(bool visible)
 	m_mouseVisible = visible;
 	if (m_mouseVisible)
 	{
-		glfwSetInputMode(m_window, GLFW_CURSOR_MODE, GLFW_CURSOR_NORMAL);
+		glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}
 	else
 	{
-		glfwSetInputMode(m_window, GLFW_CURSOR_MODE, GLFW_CURSOR_CAPTURED);
+		glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 	}
 }
 
@@ -184,7 +184,7 @@ void Window::updateInput()
 
 glm::vec2 Window::getMousePosition() const
 {
-	int intX, intY;
+	double intX, intY;
 	glfwGetCursorPos(m_window, &intX, &intY);
 
 	glm::vec2 pos;
