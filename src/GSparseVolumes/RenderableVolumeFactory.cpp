@@ -162,7 +162,7 @@ RenderableVolumePtr RenderableVolumeFactory::createRenderableVolume(const Render
 		// Iterate atlases we are going to create
 		for (int atlasIndex = 0; atlasIndex < atlasInternalNodeCounts.size(); ++atlasIndex)
 		{
-			typedef std::tr1::shared_ptr<VolumeTextureAtlasBuilder> VolumeTextureAtlasBuilderPtr;
+			typedef shared_ptr<VolumeTextureAtlasBuilder> VolumeTextureAtlasBuilderPtr;
 			std::vector<VolumeTextureAtlasBuilderPtr> atlasBuilders;
 
 			// Create an atlas builder for each grid

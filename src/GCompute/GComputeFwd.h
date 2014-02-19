@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <memory>
+#include <boost/shared_ptr.hpp>
 
 namespace cl {
 class Buffer;
@@ -35,7 +35,7 @@ class Program;
 
 namespace GCompute {
 
-using std::tr1::shared_ptr;
+using boost::shared_ptr;
 
 class ClSystem;
 struct GlTexture;

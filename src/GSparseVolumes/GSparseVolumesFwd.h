@@ -20,12 +20,12 @@
 
 #pragma once
 
-#include <memory>
+#include <boost/shared_ptr.hpp>
 #include <vector>
 
 namespace GSparseVolumes {
 
-using std::tr1::shared_ptr;
+using boost::shared_ptr;
 
 class InternalNode;
 class InternalNodeIterator;

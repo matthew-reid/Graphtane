@@ -20,11 +20,11 @@
 
 #pragma once
 
-#include <memory>
+#include <boost/shared_ptr.hpp>
 
 namespace GCommon {
 
-using std::tr1::shared_ptr;
+using boost::shared_ptr;
 
 class FileFinder;
 class Listener;

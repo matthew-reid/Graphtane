@@ -20,11 +20,11 @@
 
 #pragma once
 
-#include <memory>
+#include <boost/shared_ptr.hpp>
 
 namespace GFluid {
 
-using std::tr1::shared_ptr;
+using boost::shared_ptr;
 
 class Advecter;
 class BufferProvider;

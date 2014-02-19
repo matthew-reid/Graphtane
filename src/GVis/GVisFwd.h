@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <memory>
+#include <boost/shared_ptr.hpp>
 
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -28,8 +28,7 @@
 
 namespace GVis {
 
-using std::tr1::static_pointer_cast;
-using std::tr1::shared_ptr;
+using boost::shared_ptr;
 
 class Camera;
 class Compositor;
