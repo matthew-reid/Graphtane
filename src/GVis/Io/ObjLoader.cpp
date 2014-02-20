@@ -145,7 +145,7 @@ void ObjLoader::load(MeshData& outData, const std::string& filename)
 				throw std::runtime_error("Faces have different number of vertices in " + filename);
 			}
 
-			std::stringstream ss(lineBuffer+1, lineBufferSize-1);
+			std::stringstream ss(std::string(lineBuffer+1, lineBufferSize-1));
 
 			unsigned int positionIndex[4], uvIndex[4], normalIndex[4];
 
