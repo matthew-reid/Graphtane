@@ -47,13 +47,13 @@
 <a name="basic-approach" class="anchor" href="#basic-approach"><span class="octicon octicon-link"></span></a>Basic approach</h4>
 
 <ul>
-<li>flatten VDB grid into 2 levels; deepest internal node level and leaf level</li>
-<li>pack leaf node data into texture atlases</li>
-<li>build indirection map of leaf index -&gt; texture atlas coordinates</li>
-<li>create renderable box volume for each internal node</li>
-<li>if transparent sorting is disabled, batch boxes into fewer draw calls</li>
-<li>if transparent sorting is enabled, sort boxes</li>
-<li>render boxes with ray-marching shader</li>
+<li>Flatten VDB grid into 2 levels; deepest internal node level and leaf level</li>
+<li>Pack leaf node data into texture atlases</li>
+<li>Build indirection map of leaf index -&gt; texture atlas coordinates</li>
+<li>Create renderable box volume for each internal node</li>
+<li>If transparent sorting is disabled, batch boxes into fewer draw calls</li>
+<li>If transparent sorting is enabled, sort boxes</li>
+<li>Render boxes with ray-marching shader</li>
 </ul><h4>
 <a name="current-limitations" class="anchor" href="#current-limitations"><span class="octicon octicon-link"></span></a>Current limitations</h4>
 
