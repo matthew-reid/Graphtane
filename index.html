@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Graphtane : Libraries for GPU FX simulation &amp; rendering" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Graphtane</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/matthew-reid/Graphtane">View on GitHub</a>
+
+          <h1 id="project_title">Graphtane</h1>
+          <h2 id="project_tagline">Libraries for GPU FX simulation &amp; rendering</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/matthew-reid/Graphtane/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/matthew-reid/Graphtane/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>Graphtane consists of code libraries and demos for the following techniques:</p>
+
+<ul>
+<li>Real-time ray-marching of sparse OpenVDB grids</li>
+<li>OpenCL Navier-Stokes fluid simulation and visualisation through OpenGL interop</li>
+<li>Modern OpenGL features such as tessellation, geometry shaders and instancing</li>
+</ul><h3>
+<a name="real-time-openvdb-ray-marching" class="anchor" href="#real-time-openvdb-ray-marching"><span class="octicon octicon-link"></span></a>Real-time OpenVDB Ray-marching</h3>
+
+<p>Video:
+<a href="http://vimeo.com/mreid/graphtane">http://vimeo.com/mreid/graphtane</a></p>
+
+<h4>
+<a name="basic-approach" class="anchor" href="#basic-approach"><span class="octicon octicon-link"></span></a>Basic approach</h4>
+
+<ul>
+<li>flatten VDB grid into 2 levels; deepest internal node level and leaf level</li>
+<li>pack leaf node data into texture atlases</li>
+<li>build indirection map of leaf index -&gt; texture atlas coordinates</li>
+<li>create renderable box volume for each internal node</li>
+<li>if transparent sorting is disabled, batch boxes into fewer draw calls</li>
+<li>if transparent sorting is enabled, sort boxes</li>
+<li>render boxes with ray-marching shader</li>
+</ul><h4>
+<a name="current-limitations" class="anchor" href="#current-limitations"><span class="octicon octicon-link"></span></a>Current limitations</h4>
+
+<ul>
+<li>Flattening the grid to 2 levels may result in a large number of draw calls for extremely large grids. This could be overcome by supporting more levels of node indirection.</li>
+<li>Shader does not support adaptive sampling. I think this would improve performance, but it's not critical because most of the empty space in the grid is already 'culled' by virtue of only rendering the deepest internal nodes. If more levels are supported in the future, adaptive sampling may become necessary.</li>
+<li>The limitation of max hardware texture size can lead to many atlases being required. Due to lack of hardware support for 3D texture arrays, this may result in many draw calls. One could potentially get around this by using TBOs or 2D texture arrays and implementing manual trilinear filtering.</li>
+<li>The flattening step does not take tiles into account, so tile nodes will not be rendered unless they are first voxelized with openvdb::tree::Tree::voxelizeActiveTiles()</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Graphtane maintained by <a href="https://github.com/matthew-reid">matthew-reid</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
