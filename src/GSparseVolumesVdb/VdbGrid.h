@@ -65,7 +65,7 @@ public:
 	bool hasNext() const
 	{
 		VdbInternalNodeIterator i = *this;
-		return i.next();
+		return (i.next() != 0);
 	}
 
 	InternalNodeIteratorPtr clone() const

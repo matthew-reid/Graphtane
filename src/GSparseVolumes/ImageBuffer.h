@@ -19,6 +19,7 @@
 // THE SOFTWARE.
 
 #pragma once
+#include <cstring>
 
 namespace GSparseVolumes {
 

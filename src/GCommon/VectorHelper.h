@@ -28,7 +28,7 @@ namespace GCommon {
 template <typename T>
 void vectorErase(std::vector<T>& vec, const T& element)
 {
-	std::vector<T>::const_iterator i = std::find(vec.begin(), vec.end(), element);
+	std::vector<T>::iterator i = std::find(vec.begin(), vec.end(), element);
 	if (i != vec.end())
 	{
 		vec.erase(i);

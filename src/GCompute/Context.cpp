@@ -22,12 +22,13 @@
 #include "ClError.h"
 
 #include <assert.h>
+#include <stdexcept>
 
 #ifdef WIN32
 #include "Context_gpu_win32.h"
 #else
 // TODO: add support for other platforms.
-	ContextPtr createGpuContext(const cl::Platform& platform)
+	GCompute::ContextPtr createGpuContext(const cl::Platform& platform)
 	{
 		throw std::runtime_error("No createGpuContext() implementation for this platform");
 	}

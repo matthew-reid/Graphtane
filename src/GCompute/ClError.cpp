@@ -19,8 +19,7 @@
 // THE SOFTWARE.
 
 #include "ClError.h"
-
-#include <CL/cl.hpp>
+#include "ClIncludes.h"
 
 namespace GCompute {
 

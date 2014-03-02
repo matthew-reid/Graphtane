@@ -21,6 +21,7 @@
 #pragma once
 
 #include <deque>
+#include <cstddef>
 
 namespace GCommon {
 

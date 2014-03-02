@@ -21,4 +21,14 @@
 #pragma once
 
 #define __NO_STD_STRING
+#ifdef __APPLE__
+#include <OpenCL/cl.hpp>
+#else
 #include <CL/cl.hpp>
+#endif
+
+#if !defined(CL_VERSION_1_2)
+typedef cl::Image2DGL ImageGlType;
+#else
+typedef cl::ImageGL ImageGlType;
+#endif

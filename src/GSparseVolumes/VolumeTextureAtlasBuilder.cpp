@@ -22,6 +22,8 @@
 #include "Leaf.h"
 
 #include <GVis/Texture.h>
+#include <cstring>
+#include <stdexcept>
 
 using namespace GSparseVolumes;
 using namespace GVis;

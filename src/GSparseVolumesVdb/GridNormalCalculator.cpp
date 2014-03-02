@@ -70,8 +70,10 @@ Vec3UByteGrid::Ptr createNormalGrid(const openvdb::FloatGrid& inputGrid)
     Vec3UByteGrid::Ptr normalGrid(new Vec3UByteGrid(tree));
 	normalGrid->setTransform(const_cast<openvdb::FloatGrid&>(inputGrid).transformPtr());
 
-	openvdb::math::processTypedMap<openvdb::math::Transform, GridNormalCalculator>(const_cast<openvdb::FloatGrid&>(inputGrid).transform(), GridNormalCalculator(*normalGrid, inputGrid));
-	
+    openvdb::math::Transform& transform = const_cast<openvdb::FloatGrid&>(inputGrid).transform();
+    GridNormalCalculator gridNormalCalc(*normalGrid, inputGrid);
+	openvdb::math::processTypedMap<openvdb::math::Transform, GridNormalCalculator>(transform, gridNormalCalc);
+
 	return normalGrid;
 }
 

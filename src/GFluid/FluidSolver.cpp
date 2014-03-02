@@ -30,6 +30,10 @@
 
 #include <boost/scoped_array.hpp>
 
+#ifdef __APPLE__
+#include <OpenGL/gl.h>
+#endif
+
 #include "../../Kernels/Fluid/FluidDataTypes.h"
 #include "../../Kernels/Fluid/Params.h"
 
@@ -168,7 +172,7 @@ public:
 		}
 
 		// Create fluid state image buffer
-		m_fluidStateImageBuffer = cl::ImageGL(system._getContext(), CL_MEM_WRITE_ONLY, fluidStateTexture.target, 0, fluidStateTexture.textureId, &err);
+		m_fluidStateImageBuffer = ImageGlType(system._getContext(), CL_MEM_WRITE_ONLY, fluidStateTexture.target, 0, fluidStateTexture.textureId, &err);
 		checkError(err);
 
 		// Create parameters buffer
@@ -341,7 +345,7 @@ private:
 	cl::Buffer m_velocityGrids[velocityGridCount];
 
 	cl::Buffer m_paramsBuffer;
-	cl::ImageGL m_fluidStateImageBuffer;
+	ImageGlType m_fluidStateImageBuffer;
 
 	cl::Buffer* m_velocityGridInputPtr;
 	cl::Buffer* m_velocityGridOutputPtr;

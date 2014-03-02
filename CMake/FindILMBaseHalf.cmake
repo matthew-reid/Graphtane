@@ -12,13 +12,13 @@ FIND_PATH(OpenEXRHalf_INCLUDE_DIR OpenEXR/half.h
 )
 
 FIND_LIBRARY(OpenEXRHalf_LIBRARY_RELEASE
-	NAMES Half.lib Half
+	NAMES Half
 	PATHS ${OpenEXR_DIR}
 	PATH_SUFFIXES lib lib/release
 )
 
 FIND_LIBRARY(OpenEXRHalf_LIBRARY_DEBUG
-	NAMES Halfd.lib Halfd
+	NAMES Halfd
 	PATHS ${OpenEXR_DIR}
 	PATH_SUFFIXES lib lib/debug
 )

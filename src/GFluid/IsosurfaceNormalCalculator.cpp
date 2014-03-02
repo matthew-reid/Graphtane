@@ -51,7 +51,7 @@ public:
 		ClSystem::createKernel(m_kernel_downScale2x, program, "downScale2x");
 
 		cl_int err;
-		m_normalImageBuffer = cl::ImageGL(system._getContext(), CL_MEM_WRITE_ONLY, normalTexture.target, 0, normalTexture.textureId, &err);
+		m_normalImageBuffer = ImageGlType(system._getContext(), CL_MEM_WRITE_ONLY, normalTexture.target, 0, normalTexture.textureId, &err);
 		checkError(err);
 
 
@@ -92,7 +92,7 @@ private:
 	boost::scoped_ptr<KernelRunner> m_fullSizeKernelRunner;
 	boost::scoped_ptr<KernelRunner> m_halfSizeKernelRunner;
 
-	cl::ImageGL m_normalImageBuffer;
+	ImageGlType m_normalImageBuffer;
 	BufferProviderPtr m_densityBufferProvider;
 	TempBufferPoolPtr m_tempBufferPool;
 };

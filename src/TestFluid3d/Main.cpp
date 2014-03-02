@@ -47,6 +47,7 @@
 #include <GVis/Primitives/RectangleMeshFactory.h>
 
 #include <exception>
+#include <cstring>
 
 #include <boost/scoped_array.hpp>
 

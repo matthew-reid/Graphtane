@@ -14,4 +14,4 @@ include_directories(${GCompute_INCLUDE_DIRS})
 
 add_library(GFluid ${Graphtane_LIB_TYPE} ${SourceFiles})
 
-target_link_libraries(GFluid ${OPENCL_LIBRARIES} ${GCompute_LIBRARIES})
+target_link_libraries(GFluid ${OPENCL_LIBRARIES} ${OPENGL_LIBRARIES}  ${GCompute_LIBRARIES})

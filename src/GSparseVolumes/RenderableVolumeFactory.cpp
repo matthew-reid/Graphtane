@@ -33,6 +33,8 @@
 #include <GCommon/Logger.h>
 
 #include <boost/scoped_array.hpp>
+#include <cstring>
+#include <stdexcept>
 
 using namespace GCommon;
 using namespace GVis;
