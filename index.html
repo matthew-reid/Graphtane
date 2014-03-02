@@ -35,7 +35,7 @@
 
 <ul>
 <li>Real-time ray-marching of sparse OpenVDB grids</li>
-<li>OpenCL Navier-Stokes fluid simulation and visualisation through OpenGL interop</li>
+<li>OpenCL Navier-Stokes fluid sim and visualisation through OpenGL interop</li>
 <li>Modern OpenGL features such as tessellation, geometry shaders and instancing</li>
 </ul><h3>
 <a name="real-time-openvdb-ray-marching" class="anchor" href="#real-time-openvdb-ray-marching"><span class="octicon octicon-link"></span></a>Real-time OpenVDB Ray-marching</h3>
@@ -62,6 +62,18 @@
 <li>Shader does not support adaptive sampling. I think this would improve performance, but it's not critical because most of the empty space in the grid is already 'culled' by virtue of only rendering the deepest internal nodes. If more levels are supported in the future, adaptive sampling may become necessary.</li>
 <li>The limitation of max hardware texture size can lead to many atlases being required. Due to lack of hardware support for 3D texture arrays, this may result in many draw calls. One could potentially get around this by using TBOs or 2D texture arrays and implementing manual trilinear filtering.</li>
 <li>The flattening step does not take tiles into account, so tile nodes will not be rendered unless they are first voxelized with openvdb::tree::Tree::voxelizeActiveTiles()</li>
+</ul><h3>
+<a name="opencl-navier-stokes-fluid-sim-and-visualisation" class="anchor" href="#opencl-navier-stokes-fluid-sim-and-visualisation"><span class="octicon octicon-link"></span></a>OpenCL Navier-Stokes Fluid Sim and Visualisation</h3>
+
+<p>Video:
+<a href="http://vimeo.com/87965364">http://vimeo.com/87965364</a></p>
+
+<h4>
+<a name="features" class="anchor" href="#features"><span class="octicon octicon-link"></span></a>Features</h4>
+
+<ul>
+<li>Semi-Lagrangian MacCormack advection</li>
+<li>Ray-marching rendering with deep shadow mapping</li>
 </ul>
       </section>
     </div>
