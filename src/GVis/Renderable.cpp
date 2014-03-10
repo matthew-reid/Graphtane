@@ -34,17 +34,17 @@ void Renderable::setMaterial(const MaterialPtr& material)
 	m_material = material;
 }
 
-void Renderable::render(const RenderContext& shader, TechniqueCategory techniqueCategory)
+void Renderable::render(const RenderContext& context, TechniqueCategory techniqueCategory)
 {
 	if (m_material)
 	{
 		TechniquePtr technique = m_material->getTechnique(techniqueCategory);
 		if (technique)
 		{
-			technique->updateShaderParameters(shader);
+			technique->updateShaderParameters(context);
 			technique->applyState();
 
-			doRender(shader, techniqueCategory);
+			doRender(context, techniqueCategory);
 		}
 	}
 }

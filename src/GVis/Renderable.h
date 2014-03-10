@@ -36,10 +36,10 @@ public:
 	void setMaterial(const MaterialPtr& material);
 
 	//! Light can be null
-	void render(const RenderContext& shader, TechniqueCategory techniqueCategory);
+	void render(const RenderContext& context, TechniqueCategory techniqueCategory);
 
 	//! Light can be null
-	virtual void doRender(const RenderContext& shader, TechniqueCategory techniqueCategory) = 0;
+	virtual void doRender(const RenderContext& context, TechniqueCategory techniqueCategory) = 0;
 
 private:
 	MaterialPtr m_material;
