@@ -3,6 +3,8 @@ project(Graphtane)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMake/")
 
+set (CMAKE_CXX_FLAGS "-std=c++0x")
+
 OPTION(BUILD_Graphtane_STATIC "Build Static Libraries" 0)
 if(BUILD_Graphtane_STATIC)
 	set(Graphtane_LIB_TYPE "STATIC")

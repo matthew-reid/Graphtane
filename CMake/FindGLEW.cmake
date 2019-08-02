@@ -16,6 +16,7 @@ find_library(GLEW_LIBRARY
   NAMES GLEW glew32s
   PATHS
   ${GLEW_DIR}/lib
+  /opt/local/
 )
 
 find_library(GLEW_MX_LIBRARY
