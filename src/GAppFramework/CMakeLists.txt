@@ -11,4 +11,4 @@ include_directories(${GVis_INCLUDE_DIRS})
 
 add_library(GAppFramework ${Graphtane_LIB_TYPE} ${SourceFiles})
 
-target_link_libraries(GAppFramework GCommon ${GGVis_LIBRARIES})
+target_link_libraries(GAppFramework GCommon ${GVis_LIBRARIES})
